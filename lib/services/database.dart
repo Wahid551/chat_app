@@ -38,4 +38,34 @@ class DatabaseMethods {
       print(e);
     });
   }
+
+  //Send Messages
+  Future<void> addMessage(String chatRoomId, chatMessageData) {
+    _user
+        .collection("chatRoom")
+        .doc(chatRoomId)
+        .collection("chats")
+        .add(chatMessageData)
+        .catchError((e) {
+      print(e.toString());
+    });
+  }
+
+  // get chats
+  getChats(String chatRoomId) async {
+    return _user
+        .collection("chatRoom")
+        .doc(chatRoomId)
+        .collection("chats")
+        .orderBy('time')
+        .snapshots();
+  }
+
+  //get chat room
+  getUserChats(String itIsMyName) async {
+    return await _user
+        .collection("chatRoom")
+        .where('users', arrayContains: itIsMyName)
+        .snapshots();
+  }
 }
