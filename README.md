@@ -16,7 +16,7 @@ A new Flutter Chat application.
 
 ## Screenshots
 
-<img src='https://user-images.githubusercontent.com/73393935/105001768-18832c80-5a52-11eb-9541-02dbb5288166.jpeg' width=280/>  <img src='https://user-images.githubusercontent.com/73393935/105001772-19b45980-5a52-11eb-97c0-9226861a9fd2.jpeg' width=280/>
+<img src='https://user-images.githubusercontent.com/73393935/105001768-18832c80-5a52-11eb-9541-02dbb5288166.jpeg' width=280/>          <img src='https://user-images.githubusercontent.com/73393935/105001772-19b45980-5a52-11eb-97c0-9226861a9fd2.jpeg' width=280/>
 <img src='https://user-images.githubusercontent.com/73393935/105001776-1ae58680-5a52-11eb-99ff-f4ff726ea545.jpeg' width=280/>  <img src='https://user-images.githubusercontent.com/73393935/105001781-1c16b380-5a52-11eb-8f18-2ba2643af2ab.jpeg' width=280/>
 
 # Gif
