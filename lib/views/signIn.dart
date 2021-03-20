@@ -143,16 +143,54 @@ class _SignInState extends State<SignIn> {
                   SizedBox(
                     height: 16,
                   ),
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 16),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: Colors.white),
-                    width: MediaQuery.of(context).size.width,
-                    child: Text(
-                      "Sign In with Google",
-                      style: TextStyle(fontSize: 17, color: Colors.black87),
-                      textAlign: TextAlign.center,
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isLoading = true;
+                      });
+                      authMethods.SignInWithGoogle().then((result) async {
+                        print(authMethods.name);
+                        print(authMethods.email);
+                        if (result != null) {
+                          Map<String, String> googleData = {
+                            'userName': authMethods.name,
+                            'userEmail': authMethods.email
+                          };
+                          await DatabaseMethods().uploadUserData(googleData);
+
+                          QuerySnapshot userInfoSnapshot =
+                              await DatabaseMethods()
+                                  .getUserByUserEmail(authMethods.email);
+                          HelperFunctions.saveUserLoggedInSharedPreference(
+                              true);
+                          HelperFunctions.saveUserNameSharedPreference(
+                              userInfoSnapshot.docs[0].data()["userName"]);
+                          HelperFunctions.saveUserEmailSharedPreference(
+                              userInfoSnapshot.docs[0].data()["userEmail"]);
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => chatRoom()));
+                        } else {
+                          setState(() {
+                            isLoading = false;
+                          });
+                        }
+                      }).catchError((e) {
+                        print(e);
+                      });
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 16),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.white),
+                      width: MediaQuery.of(context).size.width,
+                      child: Text(
+                        "Sign In with Google",
+                        style: TextStyle(fontSize: 17, color: Colors.black87),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                   SizedBox(

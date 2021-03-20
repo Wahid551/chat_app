@@ -60,7 +60,6 @@ class _ConversationState extends State<Conversation> {
         chats = val;
       });
     });
-    ;
     // TODO: implement initState
     super.initState();
   }

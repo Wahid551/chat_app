@@ -24,7 +24,7 @@ class DatabaseMethods {
     });
   }
 
-  Future<void> uploadUserData(userMap) async {
+  Future uploadUserData(userMap) async {
     _user.collection('chat').add(userMap);
   }
 
